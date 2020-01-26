@@ -4,4 +4,8 @@ mongoose.connect(process.env.MONGO_URL,{
     useFindAndModify:false,
     useNewUrlParser:true,
     useUnifiedTopology:false
+}).then(()=>{
+    console.log('Connected')
+}).catch((e)=>{
+    console.log(e);
 });
