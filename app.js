@@ -43,6 +43,7 @@ app.get('/run',function(req,res){
 })
 
 app.get('/',function(req,res){
+    console.log(req.headers)
     res.send('HomePage');
 })
 app.get('/home',auth,function(req,res){
