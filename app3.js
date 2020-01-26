@@ -26,7 +26,7 @@ router.post('/login',async function(req,res){
                }
                else{
                    if(result==true){//logged in
-                      res.cookie('user',userdata,{maxAge:100000});
+                      res.cookie('user',userdata,{maxAge:100000,httpOnly:false});
                       res.send('logged in')
                    }
                    else{ //login failed
