@@ -46,7 +46,7 @@ router.post('/signup',async function(req,res){
     try{
         userid.save(function(err){
         if(err){ 
-          console.log("Error:", err);
+         return res.send("Error:", err);
         }else{
           console.log("success");
           res.send('Success!Account Created');
