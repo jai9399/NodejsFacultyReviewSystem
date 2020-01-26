@@ -35,7 +35,7 @@ router.post('/login',async function(req,res){
                }});}})})
 
 router.post('/signup',async function(req,res){
-    if(req.body.email == '' || req.body.password == ''){
+    if(req.body.email == '' || req.body.password == '' || !req.body.password || !req.body.email){
         return res.send('Must Conatin Values')
     }
     bcrypt.hash(req.body.password, 10, async function (err, hash) {
