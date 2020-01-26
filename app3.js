@@ -35,13 +35,14 @@ router.post('/login',async function(req,res){
                }});}})})
 
 router.post('/signup',async function(req,res){
-
     bcrypt.hash(req.body.password, 10, async function (err, hash) {
         if (err) {
         return res.send(err);
         }
     req.body.password = hash;
+    console.log(req.body)
     const userid = new cust(req.body);
+    console.log(userid)
     try{
        await userid.save();
        res.send('Success!Account Created');
