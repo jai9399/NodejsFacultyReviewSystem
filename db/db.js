@@ -3,7 +3,7 @@ mongoose.connect(process.env.MONGO_URL,{
     useCreateIndex:true,
     useFindAndModify:false,
     useNewUrlParser:true,
-    useUnifiedTopology:false
+    useUnifiedTopology:true
 }).then(()=>{
     console.log('Connected')
 })
