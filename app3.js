@@ -9,7 +9,7 @@ router.get('/logout',auth,function(req,res){
     res.send('Logged Out')
 })
 router.post('/login',async function(req,res){
-    console.log(req.body.email)
+    console.log(req.body)
     cust.findOne({email:req.body.email}).then((user)=>{
         const userdata = user;
         console.log(userdata);
