@@ -47,7 +47,6 @@ app.get('/',function(req,res){
 })
 app.get('/home',auth,function(req,res){
     res.send('Welcome'); 
-    //send homepage
 });
 app.get('/comment',auth,async function(req,res){
     res.send('Welcome');
