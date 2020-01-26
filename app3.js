@@ -37,7 +37,7 @@ router.post('/login',async function(req,res){
 router.post('/signup',async function(req,res){
     bcrypt.hash(req.body.password, 10, async function (err, hash) {
         if (err) {
-        return res.send(err);
+        res.send(err);
         }
     req.body.password = hash;
     console.log(req.body)
