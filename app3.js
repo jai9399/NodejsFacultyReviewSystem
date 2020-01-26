@@ -42,7 +42,6 @@ router.post('/signup',async function(req,res){
     req.body.password = hash;
     console.log(req.body)
     const userid = new cust(req.body);
-    console.log(userid)
     try{
         userid.save(function(err){
         if(err){ 
