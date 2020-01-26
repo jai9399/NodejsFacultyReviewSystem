@@ -6,6 +6,4 @@ mongoose.connect(process.env.MONGO_URL,{
     useUnifiedTopology:false
 }).then(()=>{
     console.log('Connected')
-}).catch((e)=>{
-    console.log(e);
-});
+})
