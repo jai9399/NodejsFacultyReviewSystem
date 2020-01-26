@@ -6,7 +6,7 @@ const auth = require('./auth')
 const faculties = require('./model/facinfo');
 router.get('/logout',auth,function(req,res){
     res.clearCookie('user');
-    res.redirect('/')
+    res.send('Logged Out')
 })
 router.post('/login',async function(req,res){
     console.log(req.body.email)
@@ -27,7 +27,7 @@ router.post('/login',async function(req,res){
                else{
                    if(result==true){//logged in
                       res.cookie('user',userdata,{maxAge:100000});
-                      res.redirect('/home');
+                      res.send('logged in')
                    }
                    else{ //login failed
                     res.send('No user with that email password combination!');

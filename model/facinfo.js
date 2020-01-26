@@ -6,6 +6,6 @@ const FacultySchema = new mongoose.Schema({
     },
     comments:[]
 });
-const Faculty = mongoose.model('Faculty',FacultySchema,'faculties');
+const Faculty = mongoose.model('Faculty',FacultySchema,'faculty');
 
 module.exports = Faculty;
