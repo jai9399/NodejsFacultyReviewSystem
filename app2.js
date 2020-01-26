@@ -16,7 +16,7 @@ router.get('/sendemail',function(req,res){
     useremail = req.query.email;
     const rand = jwt.sign({"email":useremail},process.env.jwt_secret,{expiresIn:'24h'});
     console.log(rand,'this is token');
-    link="http://"+process.env.host+"/verify?id="+rand;
+    link="https://"+process.env.host+"/verify?id="+rand;
     mailOptions={
      to : useremail,
      subject : "Please confirm your Email account",

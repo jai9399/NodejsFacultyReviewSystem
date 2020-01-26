@@ -16,7 +16,11 @@ const cookiep = require('cookie-parser');
 app.use(cookiep());
 app.use('/',router);
 app.use('/',router2);
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 app.get('/faculty',auth,function(req,res){
     faculties.find({}).then((users)=>{
         res.send(users);
