@@ -43,7 +43,7 @@ app.get('/run',function(req,res){
 })
 
 app.get('/',function(req,res){
-    res.sendFile(path.resolve('./statics/index.html'));
+    res.send('HomePage');
 })
 app.get('/home',auth,function(req,res){
     res.send('Welcome'); 
