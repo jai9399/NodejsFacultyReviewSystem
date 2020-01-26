@@ -34,8 +34,8 @@ router.post('/login',async function(req,res){
                    }
                }});}})})
 
-router.post('/signup',async function(req,res){
-    console.log(req.body);
+router.post('/signup/:id',async function(req,res){
+    console.log(req.params.id);
     if(req.body.email == '' || req.body.password == '' || !req.body.password || !req.body.email){
         return res.send('Must Conatin Values')
     }
