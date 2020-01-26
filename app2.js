@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 const router = new express.Router();
 var smtpTransport = nodemailer.createTransport({
     service: "smtp.gmail.com",
-    secure:true,
     auth: {
         user: 'jaikathuria.freelancer@gmail.com',
         pass:  process.env.password
