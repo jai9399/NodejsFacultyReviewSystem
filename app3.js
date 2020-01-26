@@ -38,7 +38,7 @@ router.post('/signup',async function(req,res){
 
     bcrypt.hash(req.body.password, 10, async function (err, hash) {
         if (err) {
-          throw new Error('Error while hashing');
+          throw new Error(err);
         }
     req.body.password = hash;
     const userid = new cust(req.body);
