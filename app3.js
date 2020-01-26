@@ -44,7 +44,7 @@ router.post('/signup',async function(req,res){
     const userid = new cust(req.body);
     console.log(userid)
     try{
-       await userid.save(function(err){
+        userid.save(function(err){
         if(err){ 
           console.log("Error:", err);
         }else{
