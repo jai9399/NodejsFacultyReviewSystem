@@ -1,6 +1,5 @@
 const express = require('express');
 const auth = require('./auth');
-const cors = require('cors')
 require('./db/db');
 const faculties = require('./model/facinfo');
 const router = require('./app2');
@@ -9,7 +8,6 @@ const mongoose = require('mongoose')
 const router2 = require('./app3');
 const cust = require('./model/user')
 const app = express();
-app.use(cors)
 const path = require('path');
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
