@@ -49,9 +49,9 @@ router.post('/signup',async function(req,res){
           console.log("Error:", err);
         }else{
           console.log("success");
+          res.send('Success!Account Created');
         }
       });
-       res.send('Success!Account Created');
     }
     catch(e){
         res.send(e);
