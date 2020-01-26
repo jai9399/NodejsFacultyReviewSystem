@@ -4,8 +4,7 @@
   "description": "",
   "engines": {
     "node": "v8.12.0"
-  }
-  ,
+  },
   "main": "index.js",
   "scripts": {
     "start":"node app.js",

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URL,{
+mongoose.connect('mongodb+srv://Jai290100:Jai290100mygtag@cluster0-6p1p9.mongodb.net/facinf?retryWrites=true&w=majority',{
     useCreateIndex:true,
     useFindAndModify:false,
     useNewUrlParser:true,
