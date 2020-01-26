@@ -1,5 +1,6 @@
 const express = require('express');
 const auth = require('./auth');
+const cors = require('cors')
 require('./db/db');
 const faculties = require('./model/facinfo');
 const router = require('./app2');
@@ -8,6 +9,7 @@ const mongoose = require('mongoose')
 const router2 = require('./app3');
 const cust = require('./model/user')
 const app = express();
+app.use(cors)
 const path = require('path');
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
@@ -17,7 +19,7 @@ app.use(cookiep());
 app.use('/',router);
 app.use('/',router2);
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
