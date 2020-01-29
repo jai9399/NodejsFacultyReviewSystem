@@ -14,7 +14,7 @@ const existcomment = async function(req,res,next){
                 }    
             });
 }).catch((e)=>{
-    res.send('Error');
+    res.send(e);
 });
   if(flag==1){
       req.comment = comment;
