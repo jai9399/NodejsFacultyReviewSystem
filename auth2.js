@@ -6,6 +6,7 @@ const existcomment = async function(req,res,next){
     let flag=0;
     let comment;
     await faculties.findOne({_id:req.params.id}).then(async (faculty)=>{
+        console.log(faculty);
            let comments = faculty.comments;
             await comments.forEach(element => {
                 if(element.email == sentuser.email){
