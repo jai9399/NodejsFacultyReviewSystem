@@ -82,10 +82,9 @@ router.get('/faculty/:id/comment/delete',auth,existcomment,async function(req,re
         comments.forEach(async (element) =>{
             if(element.useremail == sentemail){
                 element = null;
-            }
+            } })
             await faculties.findOneAndUpdate({_id:req.params.id},{comments:comments});
             res.send('Deleted');
-        }) 
     }).catch((e)=>{
         res.send('error',e)
     })
@@ -97,11 +96,10 @@ router.post('/faculty/:id/comment/update',auth,existcomment,async function(req,r
         let comments = faculty.comments;
         comments.forEach(async(element) =>{
             if(element.useremail == sentemail){
-                element = req.body;
-            }
+                element = json;
+            }})
             await faculties.findOneAndUpdate({_id:req.params.id},{comments:comments});
-            res.send('Deleted');
-        }) 
+            res.send('Updated');
     }).catch((e)=>{
         res.send('error',e)
     })
