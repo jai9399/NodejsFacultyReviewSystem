@@ -11,7 +11,7 @@ const nocomment = async function(req,res,next){
                 }    
             });
 }).catch((e)=>{
-    res.send('Error',e);
+   return res.send('Error',e);
 });
   if(flag==1){
       res.send('Comment already exists!');
