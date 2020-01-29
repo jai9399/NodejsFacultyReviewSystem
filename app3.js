@@ -3,6 +3,8 @@ const cust = require('./model/user')
 const router = new express.Router();
 const bcrypt = require('bcryptjs');
 const auth = require('./auth')
+const existcomment = require('./auth2');
+const nocomment = require('./auth3');
 const faculties = require('./model/facinfo');
 router.get('/logout',auth,function(req,res){
     res.clearCookie('user');
@@ -27,7 +29,7 @@ router.post('/login',async function(req,res){
                else{
                    if(result==true){//logged in
                       res.cookie('user',userdata,{maxAge:100000,httpOnly:false});
-                      res.send('logged in')
+                      res.send('Logged in')
                    }
                    else{ //login failed
                     res.send('No user with that email password combination!');
@@ -37,7 +39,7 @@ router.post('/login',async function(req,res){
 router.post('/signup',async function(req,res){
     console.log(req.query);
     if(req.body.email == '' || req.body.password == '' || !req.body.password || !req.body.email){
-        return res.send('Must Conatin Values')
+        return res.send('Must Contain Values')
     }
     bcrypt.hash(req.body.password, 10, async function (err, hash) {
         if (err) {
@@ -61,22 +63,11 @@ router.post('/signup',async function(req,res){
     }
       });       
 });
-router.post('/faculty/:id/comment',auth,async function(req,res){
+router.post('/faculty/:id/comment',auth,nocomment,async function(req,res){
     const sentuser = req.cookies.user;
     const json = {...req.body,useremail:sentuser.email};
     await faculties.findOne({_id:req.params.id}).then(async (faculty)=>{
         let comments = faculty.comments;
-        var flag =0;
-        let comment;
-        comments.forEach(element => {
-            if(element.useremail == sentuser.email){
-               comment=element;
-               flag=1;
-            }
-        });
-        if(flag==1){
-            return res.send(comment)
-        }
         comments.push(json);
         await faculties.findOneAndUpdate({_id:req.params.id},{comments:comments});
         res.send('done');
@@ -84,4 +75,36 @@ router.post('/faculty/:id/comment',auth,async function(req,res){
         res.send('error',e)
     })
 });
+router.get('/faculty/:id/comment/delete',auth,existcomment,async function(req,res){
+    const sentemail = req.cookies.user.email;
+    await faculties.findOne({_id:req.params.id}).then(async (faculty)=>{
+        let comments = faculty.comments;
+        comments.forEach(async (element) =>{
+            if(element.useremail == sentemail){
+                element = null;
+            }
+            await faculties.findOneAndUpdate({_id:req.params.id},{comments:comments});
+            res.send('Deleted');
+        }) 
+    }).catch((e)=>{
+        res.send('error',e)
+    })
+})
+router.post('/faculty/:id/comment/update',auth,existcomment,async function(req,res){
+    const sentemail = req.cookies.user.email;
+    const json = req.body;
+    await faculties.findOne({_id:req.params.id}).then(async (faculty)=>{
+        let comments = faculty.comments;
+        comments.forEach(async(element) =>{
+            if(element.useremail == sentemail){
+                element = req.body;
+            }
+            await faculties.findOneAndUpdate({_id:req.params.id},{comments:comments});
+            res.send('Deleted');
+        }) 
+    }).catch((e)=>{
+        res.send('error',e)
+    })
+})
+
 module.exports = router;
