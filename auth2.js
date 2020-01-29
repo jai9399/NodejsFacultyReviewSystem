@@ -1,4 +1,5 @@
 
+const faculties = require('./model/facinfo');
 const existcomment = async function(req,res,next){
     const sentuser = req.cookies.user;
     let flag=0;
