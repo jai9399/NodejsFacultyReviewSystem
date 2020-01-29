@@ -6,7 +6,7 @@ const nocomment = async function(req,res,next){
     await faculties.findOne({_id:req.params.id}).then(async (faculty)=>{
            let comments = faculty.comments;
             await comments.forEach(element => {
-                if(element.email == sentuser.email){
+                if(element.useremail == sentuser.email){
                     flag=1;
                 }    
             });
