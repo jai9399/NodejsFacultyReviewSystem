@@ -15,17 +15,19 @@ const existcomment = async function(req,res,next){
                     flag=1;
                 }    
             });
+            if(flag==1){
+                req.comment = comment;
+                 console.log('sencond')
+                 next();
+            }
+            else{
+            res.send('No such comment exists');
+            }
+          
+
 }).catch((e)=>{
     res.send(e);
 });
-  if(flag==1){
-      req.comment = comment;
-       console.log('sencond')
-       next();
-  }
-  else{
-  res.send('No such comment exists');
-  }
 }
 
 module.exports = existcomment;
