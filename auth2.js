@@ -24,7 +24,6 @@ const existcomment = async function(req,res,next){
             res.send('No such comment exists');
             }
           
-
 }).catch((e)=>{
     res.send(e);
 });
