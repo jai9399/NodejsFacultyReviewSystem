@@ -1,6 +1,5 @@
 
 const faculties = require('./model/facinfo');
-const mongoose = require('mongoose')
 const existcomment = async function(req,res,next){
     const sentuser = req.cookies.user;
     let flag=0;
@@ -11,13 +10,11 @@ const existcomment = async function(req,res,next){
            let comments = faculty.comments;
             comments.forEach(element => {
                 if(element.email == sentuser.email){
-                    comment = element;
                     flag=1;
-                    break;
+                    console.log('Found');
                 }    
             });
             if(flag==1){
-                req.comment = comment;
                 console.log('sencond')
                 next();
             }
