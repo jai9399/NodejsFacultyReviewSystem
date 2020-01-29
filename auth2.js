@@ -9,16 +9,17 @@ const existcomment = async function(req,res,next){
     await faculties.findOne({"_id":req.params.id}).then(async (faculty)=>{
         console.log(faculty);
            let comments = faculty.comments;
-            await comments.forEach(element => {
+            comments.forEach(element => {
                 if(element.email == sentuser.email){
                     comment = element;
                     flag=1;
+                    break;
                 }    
             });
             if(flag==1){
                 req.comment = comment;
-                 console.log('sencond')
-                 next();
+                console.log('sencond')
+                next();
             }
             else{
             res.send('No such comment exists');
