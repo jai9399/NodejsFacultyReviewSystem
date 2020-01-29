@@ -14,10 +14,11 @@ const existcomment = async function(req,res,next){
                 }    
             });
 }).catch((e)=>{
-    res.send('Error',e);
+    res.send('Error');
 });
   if(flag==1){
       req.comment = comment;
+       console.log('sencond')
        next();
   }
   else{
