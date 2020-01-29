@@ -79,25 +79,38 @@ router.get('/faculty/:id/comment/delete',auth,existcomment,async function(req,re
     const sentemail = req.cookies.user.email;
     await faculties.findOne({_id:req.params.id}).then(async (faculty)=>{
         let comments = faculty.comments;
-        comments.forEach(async (element) =>{
+        comments.forEach(async (element,index,comments) =>{
             if(element.useremail == sentemail){
-                element = null;
-            } })
+                console.log(comments[index])
+                comments[index] = "";
+            }});
+            console.log(comments);
             await faculties.findOneAndUpdate({_id:req.params.id},{comments:comments});
             res.send('Deleted');
     }).catch((e)=>{
         res.send('error',e)
     })
 })
+router.get('/faculty/:id/empcomments',async function(req,res){
+    await faculties.findOne({_id:req.params.id}).then(async (faculty)=>{
+            let comments = [];
+            await faculties.findOneAndUpdate({_id:req.params.id},{comments:comments});
+            res.send('Updated');
+    }).catch((e)=>{
+        res.send('error',e)
+    })
+})
 router.post('/faculty/:id/comment/update',auth,existcomment,async function(req,res){
     const sentemail = req.cookies.user.email;
-    const json = req.body;
+    const json = {...req.body,useremail:sentemail};
     await faculties.findOne({_id:req.params.id}).then(async (faculty)=>{
         let comments = faculty.comments;
-        comments.forEach(async(element) =>{
+        comments.forEach(async(element,index,comments) =>{
             if(element.useremail == sentemail){
-                element = json;
-            }})
+                comments[index]= json;
+            }            
+        })
+            console.log(comments);
             await faculties.findOneAndUpdate({_id:req.params.id},{comments:comments});
             res.send('Updated');
     }).catch((e)=>{

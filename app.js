@@ -59,7 +59,7 @@ app.get('/home',auth,function(req,res){
 app.get('/comment',auth,async function(req,res){
     res.send('Welcome');
 });
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 app.listen(port,()=>{
     console.log('Server Started');
