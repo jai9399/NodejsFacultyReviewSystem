@@ -2,6 +2,7 @@
 const express = require('express');
 const cust = require('./model/user')
 const nodemailer = require('nodemailer');
+const auth = require('./auth');
 const jwt = require('jsonwebtoken');
 const router = new express.Router();
 var smtpTransport = nodemailer.createTransport({
@@ -43,5 +44,15 @@ router.get('/verify',function(req,res){
         res.send('Verified')
     })
 });
+router.get('/isverified',auth,function(req,res){
+    const user = req.cookies.user;
+    if(user.verified == true){
+        res.send('Verified');
+    }
+    else
+    {
+        res.send('Not Verified');
+    }
 
+})
 module.exports = router;
